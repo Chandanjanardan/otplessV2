@@ -1,44 +1,17 @@
-import './App.css';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Hello from './Zero';
-import Otpless from './Otpless';
+import React ,{createContext,useState}from 'react'
+import Home from './component/Home'
 
+const OtplessContext=createContext();
+const authStateI={token:"fadgagaga",name:"Use Email Verification for name",phone:9403940188,email:"Use email verification email",timestamp:new Date(Date.now())}
 function App() {
-  const [user,setUser]=useState()
-  const loadScript = () => {
-    const script = document.createElement("script");
-    script.src = "https://otpless.com/auth.js"
-    script.id = "otplessIdScript"
-    document.body.appendChild(script);
-  }
-  const navigate = useNavigate();
-useEffect(() => {
-  
-  loadScript()
-  window.otpless = (otplessUser) => {
-    setUser(otplessUser)
-    navigate("/otpless", { replace: true })
-  };
-  return () => {
-    let scr = document.getElementById('otplessIdScript')
-    document.body.removeChild(scr);
-  };
-}, []);
+  const [authState,setAuthState]=useState(authStateI)
   return (
-    <>
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App/>}/>
-      <Route path="/otpless" element={<Otpless/>}/>
-      </Routes></BrowserRouter>
-    <div id="otpless-login-page" custom="true">
-    <h1 >Hello otpless</h1>
-    
-    </div>
+    <OtplessContext.Provider value={[authState,setAuthState]}>
 
-    </>
-  );
+      <Home/>
+    </OtplessContext.Provider>
+  )
 }
 
-export default App;
+export default App
+export {OtplessContext}
