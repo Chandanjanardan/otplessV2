@@ -2,6 +2,7 @@ import React,{useContext,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { OtplessContext } from '../App'
 
+
 function Landing() {
     const [data,setData]=useContext(OtplessContext)
     let name=""
@@ -47,9 +48,9 @@ function Landing() {
     console.log("this is updated data",data)
   return (
     <>
-    <div>Landing</div>
+    
     <h1>{data.name}</h1>
-    <button onClick={redirect} id="otpless-login-page">Click me harder</button>
+    <button onClick={redirect} id="otpless-login-page" ></button>
     </>
   )
 }

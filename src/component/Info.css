@@ -1,0 +1,38 @@
+.info-container{
+    width: 100vw;
+    
+}
+.data{
+    background-color:#cabbe9;
+    color: #492540;
+    height: 121px;
+
+}
+.token{
+    background-color: #fe8a71;
+}
+.name{
+    background-color: #f6cd61;
+}
+.phone{
+    background-color: #3da4ab;
+}
+.email{
+    background-color: #f37736;
+}
+.timestamp{
+    background-color:  #d0e1f9;
+}
+.btn{
+    height: 3rem;
+    border-radius: 6px;
+    color: red;
+    border: 2px black;
+    cursor: pointer;
+    margin-top: 3px;
+    background-color: #ffcc5c;
+    
+}
+
+
+

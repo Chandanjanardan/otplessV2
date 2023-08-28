@@ -1,6 +1,8 @@
-import React,{useContext} from 'react'
+import React,{useContext,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { OtplessContext } from '../App'
+
+import "./Info.css"
 
 function Info() {
     const [data,setData]=useContext(OtplessContext)
@@ -8,16 +10,45 @@ function Info() {
     function redirect(){
         navigate("/",{replace:true})
     }
+    useEffect(() => {
+      const handleBeforeUnload = (e) => {
+        e.preventDefault();
+        e.returnValue = ''; // This is required for Chrome
+      };
+  
+      window.addEventListener('beforeunload', handleBeforeUnload);
+  
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }, []); // Empty dependency array ensures the effect runs
     console.log("this is data from info page",data.email)
   return (
     <>
-    <h1>Token:{data.token}</h1>
-    {data.name?<h1>Name:{data.name}</h1>:<h1>Login using email for name</h1>}
-    <h1>Phone:{data.phone}</h1>
-    {data.email?<h1>Email:{data.email}</h1>:<h1>Login using email for email</h1>}
-    <h1>Login time:{data.timestamp}</h1>
-    <div>Info</div>
-    <button onClick={redirect}>Click me harder</button>
+    <div className='info-container'>
+    <div className='data token'>
+
+    <h1>Token<br/>{data.token}</h1>
+    </div><div className='data name'>
+
+    {data.name?<h1>Name<br/>{data.name}</h1>:<h1 >Login using email for name</h1>}
+    </div>
+    <div className='data phone'>
+
+    <h1>Phone<br/>{data.phone}</h1>
+    </div>
+    <div className='data email'>
+
+    {data.email?<h1>Email<br/>{data.email}</h1>:<h1>Login using email for email</h1>}
+    </div>
+    <div className='data timestamp'>
+
+    <h1>Login time<br/>{data.timestamp}</h1>
+    </div>
+    <div className='data button'>
+    <button className="btn" onClick={redirect}><h3>CLICK HERE AFTER READING DATA</h3></button>
+    </div>
+    </div>
     </>
   )
 }
